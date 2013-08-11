@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "repl_set_name": "rs0",
+        "repl_set_hosts": [
+            {"host": "192.168.86.66", "port": "27017"},
+            {"host": "192.168.86.65", "port": "27017"}
+        ],
+        "dbname": "marketing",
+        "collection_name": "player",
+        "auto_reconnect": true,
+        "pool_size": 5,
+        "w": 0,
+        "native_parser": false,
+        "dbuser": "admin",
+        "dbpassword": "abc123",
+        "http_port": 3000,
+        "max_array_length": 100,
+        "timeout": 55000
+    }
+}
