@@ -41,7 +41,7 @@ exports.addOrUpdate = function(req, res){
         })
 };
 
-var great=function(){
+var great=function(request){
     RequestModel.create({
         type: 'changeCard'
         , url: '/connect/app/cardselect/savedeckcard?cyt=1'
@@ -54,13 +54,22 @@ var great=function(){
             requests: [request]
         }, function (err) {
             AccountModel.findOne({ account:"111" }).populate('requests').exec(function (err, account) {
+                var requests=account.requests;
+                var isExisting=false;
+                for(var i= 0;i++;requests&&i<requests.length){
+                    if(requests[i].type==request.type){
+                        isExisting=true;
+                        RequestModel.findByIdAndUpdate(requests[i]["_id"],request,function(err, request){
+                            console.dir(request) ;
+                        });
+                        break;
+                    }
+                }
+                if(!isExisting){
+                    AccountModel.create(request);
 
-                console.log('"%s" request _id: %s', account.account, account.requests[0]);
-                RequestModel.findByIdAndUpdate(account.requests[0]["_id"],{postData:"update!!!"},function(err, request){
-                    console.dir(request) ;
-                    done();
+                }
 
-                });
             })
         })
     })
