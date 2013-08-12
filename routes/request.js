@@ -56,7 +56,11 @@ var great=function(){
             AccountModel.findOne({ account:"111" }).populate('requests').exec(function (err, account) {
 
                 console.log('"%s" request _id: %s', account.account, account.requests[0]);
-                done();
+                RequestModel.findByIdAndUpdate(account.requests[0]["_id"],{postData:"update!!!"},function(err, request){
+                    console.dir(request) ;
+                    done();
+
+                });
             })
         })
     })
