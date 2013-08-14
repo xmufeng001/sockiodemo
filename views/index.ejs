@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="http://static.globalmarket.com/common/css/bootstrap.min.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <div class="container" ng-controller="indexCtrl">
+      <div class="row well">
+          账号: <input type="text" class="text" ng-model="account" />
+          昵称: <input type="text" class="text" ng-model="nickname" />
+      </div>
+      <div>
+          <table class="table">
+              <tr>
+                  <th>账号</th>
+                  <th>昵称</th>
+                  <th>当前等级</th>
+                  <th>经验</th>
+                  <th>金币</th>
+                  <th>AP</th>
+                  <th>AP更新时间</th>
+                  <th>BC</th>
+                  <th>BC更新时间</th>
+                  <th></th>
+              </tr>
+              <tr ng-repeat="item in list | filter:account | filter:nickname">
+                  <td>{{ item.account }}</td>
+                  <td>{{ item.nickname }}</td>
+                  <td>{{ item.level }}</td>
+                  <td>{{ item.exp }}</td>
+                  <td>{{ item.gold }}</td>
+                  <td>{{ item.AP }}</td>
+                  <td>{{ item.lastAPUpdate }}</td>
+                  <td>{{ item.BC }}</td>
+                  <td>{{ item.lastBCUpdate }}</td>
+                  <td>
+                      <!-- Button to trigger modal -->
+                      <a href="#myModal{{ $index }}" role="button" class="btn" data-toggle="modal">开始</a>
+                      <a href="#myModal{{ $index }}" role="button" class="btn btn-primary" data-toggle="modal">详情</a>
+                      <!-- Modal -->
+                      <div id="myModal{{ $index }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                              <h3 id="myModalLabel">Modal header</h3>
+                          </div>
+                          <div class="modal-body">
+                              <p>{{ item.name }}</p>
+                          </div>
+                          <div class="modal-footer">
+                              <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                              <button class="btn btn-primary">Save changes</button>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+          </table>
+      </div>
+  </div>
   </body>
+
+  <script type="text/javascript" src="http://static.globalmarket.com/common/js/jq/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="http://static.globalmarket.com/common/js/angular/1.0.7/angular.min.js"></script>
+  <script type="text/javascript" src="http://static.globalmarket.com/common/js/underscore/underscore-min.js"></script>
+  <script type="text/javascript" src="http://static.globalmarket.com/sns/plugins/bootstrap/bootstrap.min.js"></script>
+
+  <script>
+
+    function indexCtrl($scope, $window) {
+        $scope.list = [
+            {account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+            ,{account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+            ,{account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+            ,{account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+            ,{account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+            ,{account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+            ,{account:"15820263794",nickname:"轰轰啊","AP":"0/60","BC":"4/231","lastAPUpdate":"2013-08-14 23:18:00","lastBCUpdate":"2013-08-14 23:19:01","exp":"190878","level":"54","gold":"315107"}
+        ];
+    }
+
+</script>
 </html>
