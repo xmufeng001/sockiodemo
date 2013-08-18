@@ -14,6 +14,8 @@ var db = mongoose.createConnection('localhost','yasewang'); //创建一个数据
 var AccountSchema = mongoose.Schema({
     account:{ type: String, required: true },
     password:{ type: String, required: true },
+    nickname :{ type: String, required: false },
+    createTime: { type: Date, required: true ,default:new Date()} ,
     lastUpdateTime: { type: Date, required: true ,default:new Date()} ,
     business:[{ type: Schema.Types.ObjectId, ref: 'business' }],
     setting: { type: Schema.Types.ObjectId, ref: 'setting' },
